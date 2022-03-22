@@ -1,10 +1,16 @@
 import { useState } from 'react';
 import { Route, Routes, NavLink } from 'react-router-dom'
-
+import AddCharacter from './pages/AddCharacter/AddCharacter';
 import './App.css';
 
 function App() {
   const [genshins, setGenshins]=useState([])
+
+  const handleCharacter = newCharacterData => {
+    setGenshins([...genshins,newCharacterData])
+
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -15,6 +21,9 @@ function App() {
         </nav>
       </header>
       <main>
+        <Routes>
+          <Route path='/add' element={<AddCharacter handleCharacter={handleCharacter}/>}/>
+        </Routes>
         
       </main>
     </div>
