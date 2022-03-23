@@ -22,7 +22,7 @@ function AddCharacter(props) {
 
   const handleSubmit = evt => {
     evt.preventDefault()
-    props.handleCharacter(formData)
+    props.handleAddCharacter(formData)
   }
 
 	return (

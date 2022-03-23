@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { Route, Routes, NavLink } from 'react-router-dom'
 import AddCharacter from './pages/AddCharacter/AddCharacter';
 import './App.css';
+import * as genshinService from './services/genshins'
 
 function App() {
   const [genshins, setGenshins]=useState([])
 
-  const handleCharacter = newCharacterData => {
-    setGenshins([...genshins,newCharacterData])
+  const handleAddCharacter = async newCharacterData => {
+    const newGenshin = await genshinService.create(newCharacterData)
+    setGenshins([...genshins,newGenshin])
 
   }
 
@@ -22,7 +24,7 @@ function App() {
       </header>
       <main>
         <Routes>
-          <Route path='/add' element={<AddCharacter handleCharacter={handleCharacter}/>}/>
+          <Route path='/add' element={<AddCharacter handleAddCharacter={handleAddCharacter}/>}/>
         </Routes>
         
       </main>
